@@ -7,6 +7,7 @@ import Product from "./Product";
 import ProductDetails from "./ProductDetails";
 import About from "../User/About";
 import Search from "./Search";
+import Footer from "./Footer";
 
 function Content() {
   const match = useRouteMatch();
@@ -22,6 +23,7 @@ function Content() {
         <Route path="/about" component={About} exact />
         <Route path="/search/:keyword" component={Search} exact />
       </Switch>
+      <Footer />
     </div>
   );
 }

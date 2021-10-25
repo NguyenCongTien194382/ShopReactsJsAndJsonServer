@@ -19,6 +19,14 @@ function Pagination() {
     <div className="page-wrap">
       <div className="pagination">
         <button
+          className="first-page"
+          onClick={() => {
+            setPage(1);
+          }}
+        >
+          First
+        </button>
+        <button
           style={{ backgroundColor: page <= 1 ? "grey" : "#04aa6d" }}
           className="prev-page"
           onClick={() => {
@@ -41,10 +49,22 @@ function Pagination() {
           style={{ backgroundColor: page === totalPage ? "grey" : "#04aa6d" }}
           className="next-page"
           onClick={() => {
-            setPage(page + 1);
+            if (page >= totalPage) {
+              return null;
+            } else {
+              return setPage(page + 1);
+            }
           }}
         >
           Next
+        </button>
+        <button
+          className="end-page"
+          onClick={() => {
+            setPage(totalPage);
+          }}
+        >
+          End
         </button>
       </div>
     </div>

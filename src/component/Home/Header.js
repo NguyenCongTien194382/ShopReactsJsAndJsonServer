@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { AuthContext } from "../../Context/Auth";
 import { ProductContext } from "../../Context/ProductContext";
 import { CLEAN_CART } from "../../const";
@@ -12,6 +12,8 @@ function Header() {
     setRole,
   } = useContext(AuthContext);
 
+  const history = useHistory();
+
   const {
     ProductState: { cart },
     dispatch,
@@ -23,7 +25,7 @@ function Header() {
     dispatch({ type: CLEAN_CART, payload: [] });
   };
 
-  // const [keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState("");
 
   return (
     <>
@@ -35,7 +37,13 @@ function Header() {
           </Link>
         </div>
 
-        {/* <div className="header-search">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            history.push(`/search/${keyword}`);
+          }}
+          className="header-search"
+        >
           <input
             type="text"
             className="header-search-input"
@@ -48,7 +56,7 @@ function Header() {
               <i className="fas fa-search"></i>
             </div>
           </Link>
-        </div> */}
+        </form>
 
         <div className="header-info">
           <Link to="/cart" className="header-cart">

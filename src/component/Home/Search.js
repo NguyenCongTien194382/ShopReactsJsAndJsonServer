@@ -22,9 +22,38 @@ function Search() {
     searchApi(params.keyword);
   }, [params.keyword]);
 
+  // const sortDesc = (array) => {
+  //   const resultArray = array.sort((a, b) => {
+  //     return a.price - b.price;
+  //   });
+
+  //   // từ bé đến lớn, tứ tự tăng dần
+
+  //   setResult(resultArray);
+  // };
+
+  // const sortAsc = (array) => {
+  //   const resultArray = array.sort((a, b) => {
+  //     return b.price - a.price;
+  //   });
+
+  //   // từ lớn đến bé, thứ tự tăng dần
+
+  //   setResult(resultArray);
+  // };
+
   return (
     <>
-      <h1 className="product-title">Kết quả tìm kiếm</h1>
+      <div className="search-top">
+        <h1 className="product-title">Kết quả tìm kiếm</h1>
+        <div class="custom-select">
+          <select name="status">
+            <option value="0">Sắp xếp</option>
+            <option value="1">Giá từ cao xuống thấp</option>
+            <option value="2">Giá từ thấp đến cao</option>
+          </select>
+        </div>
+      </div>
       <div
         style={{
           display: result.length === 0 ? "flex" : "grid",

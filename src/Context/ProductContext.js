@@ -21,16 +21,19 @@ function ProductContextProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   const getProduct = () => {
-    fetch(`${API_URL}/products?_page=${page}&_limit=4`).then((res) =>
-      res.json().then((data) => {
+    fetch(`${API_URL}/products?_page=${page}&_limit=4`)
+      .then((res) => {
+        const totalProducts = res.headers.get("X-Total-Count");
+        setTotalPage(Math.ceil(totalProducts / 4));
+        return res.json();
+      })
+      .then((data) => {
         dispatch({
           type: GET_PRODUCTS,
           payload: data,
         });
-
-        setTotalPage(Math.ceil(data.length / 4));
       })
-    );
+      .catch((err) => console.log(err));
 
     setTimeout(() => {
       setLoading(false);
