@@ -27,7 +27,10 @@ function Pagination() {
           First
         </button>
         <button
-          style={{ backgroundColor: page <= 1 ? "grey" : "#04aa6d" }}
+          style={{
+            backgroundColor: page <= 1 ? "grey" : "#04aa6d",
+            cursor: page <= 1 ? "not-allowed" : "pointer",
+          }}
           className="prev-page"
           onClick={() => {
             if (page <= 1) {
@@ -41,12 +44,23 @@ function Pagination() {
         </button>
 
         {renderPage.map((item) => (
-          <div key={item} onClick={() => setPage(item)} className="page">
+          <div
+            style={{
+              backgroundColor: page === item ? "#3498db" : "#fff",
+              color: page === item ? "#fff" : "#333",
+            }}
+            key={item}
+            onClick={() => setPage(item)}
+            className="page"
+          >
             {item}
           </div>
         ))}
         <button
-          style={{ backgroundColor: page === totalPage ? "grey" : "#04aa6d" }}
+          style={{
+            backgroundColor: page === totalPage ? "grey" : "#04aa6d",
+            cursor: page === totalPage ? "not-allowed" : "pointer",
+          }}
           className="next-page"
           onClick={() => {
             if (page >= totalPage) {

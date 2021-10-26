@@ -56,6 +56,27 @@ function Review({ idProduct }) {
     }
   };
 
+  const deleteComment = (id) => {
+    const option = {
+      method: "DELETE",
+    };
+
+    fetch(`${API_URL}/comment/${id}`, option)
+      .then((res) => res.json())
+      .then((data) => {
+        if (typeof data === "object") {
+          swal({
+            title: "Xóa thành công",
+            icon: "success",
+            buttons: "OK",
+          });
+        }
+
+        getComment();
+      })
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     getComment();
   }, []);
@@ -88,8 +109,21 @@ function Review({ idProduct }) {
         {review &&
           review.map((item) => (
             <div key={item.id} className="review-content-item">
-              <p className="review-writer">by {item.username}</p>
-              <p className="review-cmt">{item.content}</p>
+              <div>
+                <p className="review-writer">by {item.username}</p>
+                <p className="review-cmt">{item.content}</p>
+              </div>
+              <div className="review-action">
+                <div className="review-edit">
+                  <i class="fas fa-pen"></i>
+                </div>
+                <div
+                  className="review-delete"
+                  onClick={() => deleteComment(item.id)}
+                >
+                  <i class="fas fa-trash"></i>
+                </div>
+              </div>
             </div>
           ))}
       </div>

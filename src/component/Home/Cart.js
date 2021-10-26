@@ -10,7 +10,8 @@ function Cart() {
   } = useContext(ProductContext);
 
   const payCart = () => {
-    setShowModal(true);
+    // setShowModal(true);
+    // console.log(JSON.stringify(cart));
     dispatch({ type: CLEAN_CART, payload: [] });
   };
 

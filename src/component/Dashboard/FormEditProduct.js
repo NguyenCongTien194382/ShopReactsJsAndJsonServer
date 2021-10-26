@@ -41,8 +41,6 @@ function FormEditProduct() {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  console.log(typeof Number.parseFloat(data.price));
-
   const handleOnSubmit = (e) => {
     e.preventDefault();
     if (

@@ -633,6 +633,9 @@ p.review-writer {
 .review-content-item {
   border-bottom: 1px solid #ccc;
   padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .review-wrap {
@@ -875,9 +878,8 @@ button.next-page {
   height: 41px;
   line-height: 41px;
   text-align: center;
-  background-color: #e1b12c;
-  border: 1px solid #fff;
-  color: #fff;
+  border: 1px solid #ccc;
+
   cursor: pointer;
 }
 
@@ -973,4 +975,130 @@ p.footer-we-description {
 
 .footer-we-social i:first-child {
   margin-left: 0;
+}
+
+.filter-item-1 {
+  cursor: pointer;
+}
+
+ul.filter-item {
+  list-style: none;
+  width: 200px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 8px;
+  position: absolute;
+
+  background-color: #fff;
+}
+
+.filter-item-1 {
+  padding: 20px 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.wraper {
+  width: 200px;
+  position: relative;
+}
+
+.search-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.filter {
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 15px 10px;
+  font-size: 16px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.filter i {
+  transform: rotate(270deg);
+}
+
+.search-title-1 {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.review-action {
+  display: flex;
+  width: 7%;
+  justify-content: space-between;
+}
+
+.review-edit {
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  line-height: 30px;
+  background: #f1c40f;
+  color: #fff;
+  border-radius: 6px;
+}
+
+.review-delete {
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  line-height: 30px;
+  background: #e74c3c;
+  color: #fff;
+  border-radius: 6px;
+}
+
+.pay-product {
+  width: 80%;
+  height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.users-avatar {
+  width: 80px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.users {
+  width: 80%;
+  height: calc(100vh - 70px);
+  overflow-y: auto;
+}
+
+.users-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+
+p.users-email {
+  width: 20%;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+p.users-name {
+  width: 10%;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+p.users-role {
+  width: 10%;
+  text-align: center;
 }

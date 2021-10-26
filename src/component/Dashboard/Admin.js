@@ -9,8 +9,10 @@ import {
 import ProductsManages from "./ProductsManages";
 import FormCreateNewProduct from "./FormCreateNewProduct";
 import FormEditProduct from "./FormEditProduct";
+import UserManages from "../User/UserManages";
 import { API_URL } from "../../const";
 import { AuthContext } from "../../Context/Auth";
+import Pay_Product from "./Pay_Product";
 
 function Admin() {
   const match = useRouteMatch();
@@ -115,6 +117,12 @@ function Admin() {
             <Route
               path={`${match.path}/products/edit/:id`}
               component={FormEditProduct}
+              exact
+            />
+            <Route path={`${match.path}/users`} component={UserManages} exact />
+            <Route
+              path={`${match.path}/don-hang`}
+              component={Pay_Product}
               exact
             />
           </Switch>
