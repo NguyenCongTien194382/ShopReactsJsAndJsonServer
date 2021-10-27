@@ -41,6 +41,7 @@ function Header() {
           onSubmit={(e) => {
             e.preventDefault();
             history.push(`/search/${keyword}`);
+            setKeyword("");
           }}
           className="header-search"
         >

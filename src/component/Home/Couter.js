@@ -1,8 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { ProductContext } from "../../Context/ProductContext";
 
-function Couter({ data }) {
+function Couter() {
   const { couter, setCouter } = useContext(ProductContext);
+
+  useEffect(() => {
+    return () => setCouter(1);
+  }, []);
 
   return (
     <>

@@ -23,8 +23,6 @@ function ProductDetails() {
 
   const [loading, setLoading] = useState(true);
 
-  const { setCouter } = useContext(ProductContext);
-
   useEffect(() => {
     const getProductDetails = (id) => {
       fetch(`${API_URL}/products/${id}`)
@@ -35,8 +33,6 @@ function ProductDetails() {
     };
 
     getProductDetails(params.id);
-
-    return () => setCouter(1);
   }, []);
 
   useEffect(() => {

@@ -47,7 +47,9 @@ function ProductContextProvider({ children }) {
       }
     });
 
-    product.quanlity = couter;
+    if (couter) {
+      product.quanlity = couter;
+    }
 
     const cartExist = ProductState.cart.some((item) => {
       return product.id === item.id;

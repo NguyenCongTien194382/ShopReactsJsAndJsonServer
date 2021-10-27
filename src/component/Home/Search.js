@@ -59,14 +59,20 @@ function Search() {
             >
               <li
                 onClick={() => {
-                  console.log("click");
                   sortDesc(result);
+                  setShowFilter(false);
                 }}
                 className="filter-item-1"
               >
                 Giá từ thấp đến cao
               </li>
-              <li onClick={() => sortAsc(result)} className="filter-item-1">
+              <li
+                onClick={() => {
+                  sortAsc(result);
+                  setShowFilter(false);
+                }}
+                className="filter-item-1"
+              >
                 Giá từ cao xuống thấp
               </li>
             </ul>

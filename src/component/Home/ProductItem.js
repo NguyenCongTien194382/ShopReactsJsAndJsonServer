@@ -19,7 +19,7 @@ function ProductItem({ data }) {
               <img src={image} alt={name} />
             </Link>
             <div className="wrapProduct">
-              <Link to={`/product/${id}`}>
+              <Link className="product-name-link" to={`/product/${id}`}>
                 <h2 className="product-name">{name}</h2>
               </Link>
               <p className="product-price">${price}</p>
