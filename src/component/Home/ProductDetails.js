@@ -67,6 +67,13 @@ function ProductDetails() {
                       if (data.status === "1") {
                         addToCart(data.id);
                         history.push("/cart");
+                        // swal({
+                        //   title:
+                        //     "Click vào hình ảnh để xóa sản phẩm khỏi giỏ hàng",
+                        //   text: "Do trên mobile mình đã bỏ nút xóa để trải nghiệm tốt hơn",
+                        //   icon: "warning",
+                        //   buttons: "OK",
+                        // });
                       } else {
                         swal({
                           title: "Sản phẩm này đã hết",

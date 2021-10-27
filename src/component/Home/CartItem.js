@@ -9,7 +9,12 @@ function CartItem({ data, index }) {
       <div className="cart-item">
         <p className="cart-id">{index}</p>
         <p className="cart-name">{data.name}</p>
-        <img src={data.image} alt="product img" className="cart-img" />
+        <img
+          onClick={() => deleteToCart(data.id)}
+          src={data.image}
+          alt="product img"
+          className="cart-img"
+        />
         <p className="cart-price">${data.price}</p>
         <div className="soluong">{data.quanlity}</div>
         <button

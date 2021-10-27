@@ -14,17 +14,9 @@ function ProductContextProvider({ children }) {
 
   const [couter, setCouter] = useState(1);
 
-  const [page, setPage] = useState(1);
-
-  const [totalPage, setTotalPage] = useState();
-
-  const [loading, setLoading] = useState(true);
-
   const getProduct = () => {
-    fetch(`${API_URL}/products?_page=${page}&_limit=4`)
+    fetch(`${API_URL}/products`)
       .then((res) => {
-        const totalProducts = res.headers.get("X-Total-Count");
-        setTotalPage(Math.ceil(totalProducts / 4));
         return res.json();
       })
       .then((data) => {
@@ -34,10 +26,6 @@ function ProductContextProvider({ children }) {
         });
       })
       .catch((err) => console.log(err));
-
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
   };
 
   const addToCart = (id) => {
@@ -47,9 +35,7 @@ function ProductContextProvider({ children }) {
       }
     });
 
-    if (couter) {
-      product.quanlity = couter;
-    }
+    product.quanlity = couter;
 
     const cartExist = ProductState.cart.some((item) => {
       return product.id === item.id;
@@ -87,9 +73,8 @@ function ProductContextProvider({ children }) {
   }, [ProductState.cart]);
 
   useEffect(() => {
-    setLoading(true);
     getProduct();
-  }, [page]);
+  }, []);
 
   const ProductData = {
     ProductState,
@@ -99,10 +84,6 @@ function ProductContextProvider({ children }) {
     deleteToCart,
     getProduct,
     dispatch,
-    loading,
-    page,
-    setPage,
-    totalPage,
   };
 
   return (

@@ -46,9 +46,11 @@ function Review({ idProduct }) {
               icon: "success",
               button: "OK",
             });
-            setComment("");
+
             getComment();
           }
+
+          setComment("");
         })
         .catch((error) => console.log("error", error));
     } else {
@@ -89,8 +91,9 @@ function Review({ idProduct }) {
           <div className="review-input">
             <input
               type="text"
-              placeholder="Bạn cảm thấy thế nào về sản phẩm ?"
+              placeholder="Bạn cảm thấy thế nào"
               onChange={(e) => setComment(e.target.value)}
+              value={comment}
             />
             <input
               onClick={() => postComment()}

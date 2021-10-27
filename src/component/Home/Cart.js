@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { ProductContext } from "../../Context/ProductContext";
 import { CLEAN_CART } from "../../const";
 import CartItem from "./CartItem";
+import { Link } from "react-router-dom";
 
 function Cart() {
   const {
@@ -50,11 +51,12 @@ function Cart() {
 
         <div className="pay">
           <h1>
-            Tổng cộng $
+            Tổng cộng: $
             {cart.reduce((total, item) => {
               return (total += Number(item.price * item.quanlity));
             }, 0)}
           </h1>
+
           <div className="pay-to-win" onClick={payCart}>
             Thanh toán
           </div>

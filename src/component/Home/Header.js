@@ -65,6 +65,34 @@ function Header() {
             <span>{cart.length}</span>
           </Link>
 
+          <div className="nav-menu-mobile">
+            <i class="fas fa-bars"></i>
+          </div>
+
+          <div className="nav-mobile">
+            <ul className="nav-mobile-list">
+              {user && user.roleId === "admin" ? (
+                <li className="nav-mobile-item">
+                  <Link to="/admin" className="nav-mobile-link">
+                    Dashboard
+                  </Link>
+                </li>
+              ) : null}
+              <li className="nav-mobile-item">
+                <Link to="/about" className="nav-mobile-link">
+                  About
+                </Link>
+              </li>
+              {user && user.username ? (
+                <li className="nav-mobile-item">{user.username}</li>
+              ) : (
+                <li className="nav-mobile-item">
+                  <Link className="nav-mobile-link">Đăng nhập</Link>
+                </li>
+              )}
+            </ul>
+          </div>
+
           <div className="header-users">
             {user ? (
               <>

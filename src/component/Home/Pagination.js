@@ -1,9 +1,6 @@
-import React, { useContext } from "react";
-import { ProductContext } from "../../Context/ProductContext";
+import React from "react";
 
-function Pagination() {
-  const { page, setPage, totalPage } = useContext(ProductContext);
-
+function Pagination({ page, totalPage, setPage, setLoading }) {
   const loopPage = (totalPage) => {
     let divElement = [];
     for (let i = 1; i <= totalPage; i++) {
@@ -21,6 +18,7 @@ function Pagination() {
         <button
           className="first-page"
           onClick={() => {
+            setLoading(true);
             setPage(1);
           }}
         >
@@ -36,6 +34,7 @@ function Pagination() {
             if (page <= 1) {
               return null;
             } else {
+              setLoading(true);
               return setPage(page - 1);
             }
           }}
@@ -50,7 +49,10 @@ function Pagination() {
               color: page === item ? "#fff" : "#333",
             }}
             key={item}
-            onClick={() => setPage(item)}
+            onClick={() => {
+              setLoading(true);
+              setPage(item);
+            }}
             className="page"
           >
             {item}
@@ -66,6 +68,7 @@ function Pagination() {
             if (page >= totalPage) {
               return null;
             } else {
+              setLoading(true);
               return setPage(page + 1);
             }
           }}
@@ -75,6 +78,7 @@ function Pagination() {
         <button
           className="end-page"
           onClick={() => {
+            setLoading(true);
             setPage(totalPage);
           }}
         >

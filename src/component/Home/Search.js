@@ -91,12 +91,12 @@ function Search() {
         ) : (
           result &&
           result.map((item) => (
-            <div className="product">
+            <div key={item.id} className="product">
               <Link to={`/product/${item.id}`}>
                 <img src={item.image} alt={item.name} />
               </Link>
               <div className="wrapProduct">
-                <Link to={`/product/${item.id}`}>
+                <Link className="product-name-link" to={`/product/${item.id}`}>
                   <h2 className="product-name">{item.name}</h2>
                 </Link>
                 <p className="product-price">${item.price}</p>
