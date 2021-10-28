@@ -18,6 +18,9 @@
 }
 
 @media only screen and (max-width: 767px) {
+  .text-black {
+    color: #333;
+  }
   .header {
     padding: 0 16px;
   }
@@ -95,13 +98,12 @@
     width: 100px;
   }
   .not-review {
-    margin-top: 10px;
+    margin-top: 30px;
   }
   .review-input input {
-    margin-top: 20px;
+    margin-top: 30px;
   }
   .nav-mobile {
-    display: none;
     position: fixed;
     background-color: #fff;
     top: 0;
@@ -109,13 +111,75 @@
     bottom: 0;
     width: 300px;
     max-width: 100%;
+    display: block;
+    transition: all 0.3s ease-in-out;
+    z-index: 1000;
   }
   .nav-mobile ul {
     list-style: none;
   }
-  .nav-mobile a {
+  .nav-mobile-link {
     padding: 20px 30px;
     color: #333;
     display: block;
+  }
+  form.form-mobile {
+    padding: 20px;
+  }
+  form.form-mobile input {
+    width: 100%;
+    padding: 5px 15px;
+    border: 1px solid #ccc;
+    outline: none;
+    border-radius: 6px;
+  }
+  .nav-close {
+    width: 60px;
+    color: #333;
+
+    padding: 20px;
+  }
+
+  .nav-close i {
+    font-size: 30px;
+  }
+  .add-product {
+    justify-content: space-between;
+  }
+  .category {
+    position: fixed;
+    width: 250px;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    height: 100%;
+  }
+  .product-manages {
+    width: 100%;
+    overflow: auto;
+  }
+  p.product-manages-name {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .product-manages-item {
+    width: 500px;
+  }
+  .admin {
+    flex-direction: column;
+  }
+  .users {
+    border-top: 1px solid #ccc;
+    width: 100%;
+  }
+
+  p.users-name {
+    width: 20%;
+  }
+  .users-item {
+    width: 500px;
   }
 }

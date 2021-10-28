@@ -86,13 +86,13 @@ a {
 
 .nav-menu-mobile {
   display: none;
+  color: #fff;
 }
 
 .header-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #fff;
 }
 
 .header-cart {
@@ -445,13 +445,15 @@ small {
 }
 
 .add-button {
+  width: 100px;
   height: 40px;
   line-height: 40px;
-  padding: 0 30px;
+  padding: 0 5px;
   color: #fff;
   background-color: #e1b12c;
   border-radius: 50px;
   cursor: pointer;
+  text-align: center;
 }
 
 p.status {
@@ -508,10 +510,12 @@ h1.cart-title {
   height: calc(100vh - 70px);
   width: 20%;
   background-color: #7873f5;
+  transition: all 0.3s linear;
 }
 
 ul.category-list {
   height: 100%;
+  list-style: none;
 }
 
 .category-link {
@@ -747,7 +751,6 @@ input.review-submit {
 }
 
 .about {
-  height: calc(100vh - 70px);
   display: flex;
   align-items: center;
   padding: 0 30px;
@@ -766,6 +769,7 @@ input.review-submit {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 70px;
 }
 
 .about-avatar img {
@@ -919,6 +923,7 @@ span.header-username {
   text-overflow: ellipsis;
   width: 70%;
   overflow: hidden;
+  color: #fff;
 }
 
 footer {

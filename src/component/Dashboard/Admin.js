@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   useRouteMatch,
   Switch,
@@ -48,11 +48,23 @@ function Admin() {
     loadUser();
   });
 
+  const [showCategory, setShowCategory] = useState(false);
+
   return (
     <>
       {role === "admin" ? (
         <div className="admin">
-          <div className="category">
+          <div
+            className="nav-menu-mobile"
+            onClick={() => setShowCategory(!showCategory)}
+          >
+            <i class="fas fa-bars text-black"></i>
+          </div>
+          <div
+            className="category"
+            style={{ right: showCategory ? "0px" : "-800px" }}
+            onClick={() => setShowCategory(false)}
+          >
             <ul className="category-list">
               <li className="category-item">
                 <NavLink

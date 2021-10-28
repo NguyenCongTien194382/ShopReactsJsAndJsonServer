@@ -18,7 +18,6 @@ function Pagination({ page, totalPage, setPage, setLoading }) {
         <button
           className="first-page"
           onClick={() => {
-            setLoading(true);
             setPage(1);
           }}
         >
@@ -34,7 +33,6 @@ function Pagination({ page, totalPage, setPage, setLoading }) {
             if (page <= 1) {
               return null;
             } else {
-              setLoading(true);
               return setPage(page - 1);
             }
           }}
@@ -50,7 +48,6 @@ function Pagination({ page, totalPage, setPage, setLoading }) {
             }}
             key={item}
             onClick={() => {
-              setLoading(true);
               setPage(item);
             }}
             className="page"
@@ -68,7 +65,6 @@ function Pagination({ page, totalPage, setPage, setLoading }) {
             if (page >= totalPage) {
               return null;
             } else {
-              setLoading(true);
               return setPage(page + 1);
             }
           }}
@@ -78,7 +74,6 @@ function Pagination({ page, totalPage, setPage, setLoading }) {
         <button
           className="end-page"
           onClick={() => {
-            setLoading(true);
             setPage(totalPage);
           }}
         >

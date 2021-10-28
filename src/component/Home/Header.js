@@ -27,6 +27,8 @@ function Header() {
 
   const [keyword, setKeyword] = useState("");
 
+  const [showMenu, setShowMenu] = useState(false);
+
   return (
     <>
       <div className="header">
@@ -40,8 +42,12 @@ function Header() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            history.push(`/search/${keyword}`);
-            setKeyword("");
+            if (keyword !== "") {
+              history.push(`/search/${keyword}`);
+              setKeyword("");
+            } else {
+              return null;
+            }
           }}
           className="header-search"
         >
@@ -52,11 +58,10 @@ function Header() {
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
           />
-          <Link to={`/search/${keyword}`}>
-            <div className="input-submit">
-              <i className="fas fa-search"></i>
-            </div>
-          </Link>
+
+          <div className="input-submit">
+            <i className="fas fa-search"></i>
+          </div>
         </form>
 
         <div className="header-info">
@@ -65,29 +70,82 @@ function Header() {
             <span>{cart.length}</span>
           </Link>
 
-          <div className="nav-menu-mobile">
+          <div className="nav-menu-mobile" onClick={() => setShowMenu(true)}>
             <i class="fas fa-bars"></i>
           </div>
 
-          <div className="nav-mobile">
+          <div
+            className="nav-mobile"
+            style={{ right: showMenu ? "0px" : "-800px" }}
+          >
+            <div onClick={() => setShowMenu(false)} className="nav-close">
+              <i class="fas fa-times"></i>
+            </div>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (keyword) {
+                  history.push(`/search/${keyword}`);
+                  setKeyword("");
+                  setShowMenu(false);
+                } else {
+                  return;
+                }
+              }}
+              className="form-mobile"
+            >
+              <input
+                type="text"
+                placeholder="Search..."
+                onChange={(e) => setKeyword(e.target.value)}
+                value={keyword}
+              />
+            </form>
             <ul className="nav-mobile-list">
               {user && user.roleId === "admin" ? (
                 <li className="nav-mobile-item">
-                  <Link to="/admin" className="nav-mobile-link">
+                  <Link
+                    onClick={() => setShowMenu(false)}
+                    to="/admin"
+                    className="nav-mobile-link"
+                  >
                     Dashboard
                   </Link>
                 </li>
               ) : null}
-              <li className="nav-mobile-item">
-                <Link to="/about" className="nav-mobile-link">
-                  About
-                </Link>
-              </li>
+
               {user && user.username ? (
-                <li className="nav-mobile-item">{user.username}</li>
+                <>
+                  <li className="nav-mobile-item">
+                    <Link
+                      onClick={() => setShowMenu(false)}
+                      to="/about"
+                      className="nav-mobile-link"
+                    >
+                      {user.username}
+                    </Link>
+                  </li>
+                  <li className="nav-mobile-item">
+                    <span
+                      onClick={() => {
+                        logOut();
+                        setShowMenu(false);
+                      }}
+                      className="nav-mobile-link"
+                    >
+                      Đăng xuất
+                    </span>
+                  </li>
+                </>
               ) : (
                 <li className="nav-mobile-item">
-                  <Link className="nav-mobile-link">Đăng nhập</Link>
+                  <Link
+                    onClick={() => setShowMenu(false)}
+                    to="/login"
+                    className="nav-mobile-link"
+                  >
+                    Đăng nhập
+                  </Link>
                 </li>
               )}
             </ul>

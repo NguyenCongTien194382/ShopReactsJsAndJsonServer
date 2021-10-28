@@ -11,20 +11,14 @@ function ProductManagesItems({ index, data, deleteFunc }) {
           <img src={data.image} alt={data.name} />
         </p>
         <p className="product-manages-price">{data.price}</p>
-        <div className="product-manages-action">
-          <Link
-            style={{ color: "#fff" }}
-            to={`/admin/products/edit/${data.id}`}
-          >
-            <button className="buy-product full-width text-center mx-2">
-              Edit
-            </button>
+        <div className="review-action">
+          <Link to={`/admin/products/edit/${data.id}`}>
+            <div className="review-edit">
+              <i class="fas fa-pen"></i>
+            </div>
           </Link>
-          <div
-            onClick={() => deleteFunc(data.id)}
-            className="delete-product full-width text-center mx-2"
-          >
-            Delete
+          <div className="review-delete" onClick={() => deleteFunc(data.id)}>
+            <i class="fas fa-trash"></i>
           </div>
         </div>
       </div>

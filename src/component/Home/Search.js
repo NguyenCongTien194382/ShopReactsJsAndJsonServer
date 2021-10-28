@@ -6,20 +6,24 @@ function Search() {
   const [result, setResult] = useState();
 
   const [showFilter, setShowFilter] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const params = useParams();
 
   useEffect(() => {
     const searchApi = (keyword) => {
-      fetch(`${API_URL}/products?name_like=${keyword}`)
+      fetch(`${API_URL}/products?q=${keyword}`)
         .then((response) => response.json())
         .then((dataRes) => {
           if (typeof dataRes === "object") {
             setResult(dataRes);
+            setLoading(false);
           }
         })
         .catch((error) => console.log("error", error));
     };
+
+    setLoading(true);
 
     searchApi(params.keyword);
   }, [params.keyword]);
@@ -40,9 +44,41 @@ function Search() {
     });
 
     // từ lớn đến bé, thứ tự tăng dần
-
     setResult([...resultArray]);
   };
+
+  let renderViewSearch;
+
+  if (loading) {
+    renderViewSearch = (
+      <>
+        <div className="loading-products">
+          <div class="loader"></div>
+        </div>
+      </>
+    );
+  } else {
+    renderViewSearch =
+      result &&
+      result.map((item) => (
+        <div key={item.id} className="product">
+          <>
+            <Link to={`/product/${item.id}`}>
+              <img src={item.image} alt={item.name} />
+            </Link>
+            <div className="wrapProduct">
+              <Link className="product-name-link" to={`/product/${item.id}`}>
+                <h2 className="product-name">{item.name}</h2>
+              </Link>
+              <p className="product-price">${item.price}</p>
+            </div>
+            <Link to={`/product/${item.id}`} className="view-details">
+              View Details
+            </Link>
+          </>
+        </div>
+      ));
+  }
 
   return (
     <>
@@ -89,23 +125,7 @@ function Search() {
         {result && result.length === 0 ? (
           <h1 className="search-title">Không tìm thấy sản phẩm</h1>
         ) : (
-          result &&
-          result.map((item) => (
-            <div key={item.id} className="product">
-              <Link to={`/product/${item.id}`}>
-                <img src={item.image} alt={item.name} />
-              </Link>
-              <div className="wrapProduct">
-                <Link className="product-name-link" to={`/product/${item.id}`}>
-                  <h2 className="product-name">{item.name}</h2>
-                </Link>
-                <p className="product-price">${item.price}</p>
-              </div>
-              <Link to={`/product/${item.id}`} className="view-details">
-                View Details
-              </Link>
-            </div>
-          ))
+          renderViewSearch
         )}
       </div>
     </>

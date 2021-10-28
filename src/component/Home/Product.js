@@ -27,6 +27,8 @@ function Product() {
         });
     };
 
+    setLoading(true);
+
     getProductsPage();
   }, [page]);
 
