@@ -65,7 +65,7 @@ function ProductDetails() {
                   onClick={() => {
                     if (user) {
                       if (data.status === "1") {
-                        addToCart(data.id);
+                        addToCart(data);
                         history.push("/cart");
                         // swal({
                         //   title:

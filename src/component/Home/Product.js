@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Pagination from "./Pagination";
 import ProductItem from "./ProductItem";
 import { API_URL } from "../../const";
+import { ProductContext } from "../../Context/ProductContext";
 
 function Product() {
   const [products, setProducts] = useState([]);
 
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState();
-  const [loading, setLoading] = useState(true);
+  const { loading, setLoading } = useContext(ProductContext);
 
   useEffect(() => {
     const getProductsPage = () => {

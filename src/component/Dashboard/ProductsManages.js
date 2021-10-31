@@ -1,20 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ProductManagesItems from "./ProductManagesItems";
 import { API_URL } from "../../const";
 import swal from "sweetalert";
+import { ProductContext } from "../../Context/ProductContext";
 
 function ProductsManages() {
   const [products, setProducts] = useState([]);
+  const { loading, setLoading } = useContext(ProductContext);
 
   const getProduct = () => {
     fetch(`${API_URL}/products`).then((res) =>
       res.json().then((data) => {
         setProducts(data);
+        setLoading(false);
       })
     );
   };
 
   useEffect(() => {
+    setLoading(true);
     getProduct();
   }, []);
 
@@ -54,18 +58,26 @@ function ProductsManages() {
     });
   };
 
-  return (
-    <div className="product-manages">
-      {products.map((item, index) => (
-        <ProductManagesItems
-          deleteFunc={deleteProduct}
-          index={index}
-          data={item}
-          key={item.id}
-        />
-      ))}
-    </div>
-  );
+  let body;
+
+  if (loading) {
+    body = (
+      <div className="loading-admin">
+        <div class="loader"></div>
+      </div>
+    );
+  } else {
+    body = products.map((item, index) => (
+      <ProductManagesItems
+        deleteFunc={deleteProduct}
+        index={index}
+        data={item}
+        key={item.id}
+      />
+    ));
+  }
+
+  return <div className="product-manages">{body}</div>;
 }
 
 export default ProductsManages;

@@ -1,12 +1,15 @@
 import React, { useContext, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { AuthContext } from "../../Context/Auth";
+import { ProductContext } from "../../Context/ProductContext";
 
 function LoginForm() {
   const [data, setData] = useState({
     email: "",
     password: "",
   });
+
+  const [showPass, setShowPass] = useState(false);
 
   const handleOnChangeInput = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -17,12 +20,12 @@ function LoginForm() {
     AuthState: { user },
   } = useContext(AuthContext);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     if (!data.password || !data.email) {
       return null;
     } else {
-      LoginUsers(data);
+      await LoginUsers(data);
     }
   };
 
@@ -52,21 +55,27 @@ function LoginForm() {
               onChange={handleOnChangeInput}
             />
 
-            <label htmlFor="psw">
-              <b>Password</b>
-            </label>
-            <input
-              type="password"
-              placeholder="Enter Password"
-              name="password"
-              required
-              onChange={handleOnChangeInput}
-            />
+            <div className="password">
+              <label htmlFor="psw">
+                <b>Password</b>
+              </label>
+              <input
+                type={showPass ? "text" : "password"}
+                placeholder="Enter Password"
+                name="password"
+                required
+                onChange={handleOnChangeInput}
+              />
+              <i
+                onClick={() => setShowPass(!showPass)}
+                class={showPass ? "far fa-eye" : "far fa-eye-slash"}
+              ></i>
+            </div>
 
             <button type="submit">Login</button>
 
             <span>
-              Nếu bạn chưa có tài khoản <Link to="/register">Đăng ký ngay</Link>{" "}
+              Nếu bạn chưa có tài khoản <Link to="/register">Đăng ký ngay</Link>
             </span>
           </div>
         </form>

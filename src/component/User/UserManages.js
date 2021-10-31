@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { API_URL } from "../../const";
+import { ProductContext } from "../../Context/ProductContext";
 
 function UserManages() {
+  const { loading, setLoading } = useContext(ProductContext);
+
   useEffect(() => {
     const getAllUsers = () => {
       fetch(`${API_URL}/users`)
@@ -9,10 +12,12 @@ function UserManages() {
         .then((users) => {
           if (typeof users === "object") {
             setUsers(users);
+            setLoading(false);
           }
         });
     };
 
+    setLoading(true);
     getAllUsers();
   }, []);
 
@@ -21,7 +26,12 @@ function UserManages() {
   return (
     <>
       <div className="users">
-        {users &&
+        {loading ? (
+          <div className="loading-admin">
+            <div class="loader"></div>
+          </div>
+        ) : (
+          users &&
           users.map((user, index) => (
             <div className="users-item">
               <p className="users-id">{index}</p>
@@ -47,7 +57,8 @@ function UserManages() {
                 </div>
               </div>
             </div>
-          ))}
+          ))
+        )}
       </div>
     </>
   );

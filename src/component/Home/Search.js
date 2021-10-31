@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { API_URL } from "../../const";
+import { ProductContext } from "../../Context/ProductContext";
 
 function Search() {
   const [result, setResult] = useState();
 
   const [showFilter, setShowFilter] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const { loading, setLoading } = useContext(ProductContext);
 
   const params = useParams();
 
@@ -117,7 +118,7 @@ function Search() {
       </div>
       <div
         style={{
-          display: result && result.length === 0 ? "flex" : "grid",
+          display: loading || (result && result.length === 0) ? "flex" : "grid",
           height: result && result.length === 0 ? "calc(100vh - 186px)" : null,
         }}
         className="products"

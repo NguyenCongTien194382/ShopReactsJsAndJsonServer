@@ -14,27 +14,9 @@ function ProductContextProvider({ children }) {
 
   const [couter, setCouter] = useState(1);
 
-  const getProduct = () => {
-    fetch(`${API_URL}/products`)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        dispatch({
-          type: GET_PRODUCTS,
-          payload: data,
-        });
-      })
-      .catch((err) => console.log(err));
-  };
+  const [loading, setLoading] = useState(true);
 
-  const addToCart = (id) => {
-    const product = ProductState.products.find((item) => {
-      if (item.id === id) {
-        return item;
-      }
-    });
-
+  const addToCart = (product) => {
     product.quanlity = couter;
 
     const cartExist = ProductState.cart.some((item) => {
@@ -72,18 +54,15 @@ function ProductContextProvider({ children }) {
     localStorage.setItem("cart", JSON.stringify(ProductState.cart));
   }, [ProductState.cart]);
 
-  useEffect(() => {
-    getProduct();
-  }, []);
-
   const ProductData = {
     ProductState,
     addToCart,
     couter,
     setCouter,
     deleteToCart,
-    getProduct,
     dispatch,
+    loading,
+    setLoading,
   };
 
   return (
