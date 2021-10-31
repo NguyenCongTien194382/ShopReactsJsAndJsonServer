@@ -12,7 +12,7 @@ function Product() {
 
   useEffect(() => {
     const getProductsPage = () => {
-      fetch(`${API_URL}/products/?_page=${page}&_limit=4`)
+      fetch(`${API_URL}/products/?_page=${page}&_limit=5`)
         .then((res) => {
           setTotalPage(Math.ceil(res.headers.get("X-Total-Count") / 4));
           return res.json();

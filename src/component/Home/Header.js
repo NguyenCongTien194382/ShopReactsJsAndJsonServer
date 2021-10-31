@@ -126,6 +126,15 @@ function Header() {
                     </Link>
                   </li>
                   <li className="nav-mobile-item">
+                    <Link
+                      onClick={() => setShowMenu(false)}
+                      to="/about"
+                      className="nav-mobile-link"
+                    >
+                      Lịch sử mua hàng
+                    </Link>
+                  </li>
+                  <li className="nav-mobile-item">
                     <span
                       onClick={() => {
                         logOut();
@@ -170,6 +179,7 @@ function Header() {
                     <Link to="/admin">Dashboard</Link>
                   ) : null}
                   <Link to="/about">About</Link>
+                  <Link to="/don_hang">Lịch sử mua hàng</Link>
                   <div className="button-logout" onClick={logOut}>
                     Log Out
                   </div>

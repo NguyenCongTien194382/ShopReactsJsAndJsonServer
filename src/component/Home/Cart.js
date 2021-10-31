@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { ProductContext } from "../../Context/ProductContext";
 import { CLEAN_CART } from "../../const";
 import CartItem from "./CartItem";
@@ -22,26 +22,31 @@ function Cart() {
 
   const random = uuidv4();
 
-  const totalPrice = (array) => {
-    return array.reduce((total, item) => {
-      return (total += Number(item.price * item.quanlity));
-    }, 0);
-  };
+  const [tong_don_hang, setTong_don_hang] = useState();
 
-  const tong_don_hang = totalPrice(cart);
+  useEffect(() => {
+    const totalPrice = (array) => {
+      return array.reduce((total, item) => {
+        return (total += Number(item.price * item.quanlity));
+      }, 0);
+    };
+
+    setTong_don_hang(totalPrice(cart));
+  }, [cart]);
 
   const [data, setData] = useState({
+    userId: localStorage.getItem("idUser"),
     email: "",
     name: "",
     address: "",
     phone: "",
     ma_don_hang: random,
-    price: tong_don_hang,
+    price: "",
     status: "0",
   });
 
   const handleOnChangeModal = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+    setData({ ...data, [e.target.name]: e.target.value, price: tong_don_hang });
   };
 
   const luu_chi_tiet_don_hang = () => {
