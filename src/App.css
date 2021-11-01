@@ -19,6 +19,10 @@ a {
   text-decoration: none;
 }
 
+img {
+  object-fit: cover;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -1266,4 +1270,30 @@ p.historyBuyItem-status {
 
 .historyBuyItem-action p {
   margin: 0 20px;
+}
+
+h1.title {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.chi-tiet-don-hang {
+  margin-top: 20px;
+}
+
+.chi-tiet-don-hang-wrap p {
+  margin: 20px 0;
+}
+
+p.total {
+  text-align: right;
+  font-size: 30px;
+  margin: 20px 0;
+}
+
+.not-view {
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

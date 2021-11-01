@@ -9,6 +9,7 @@ import About from "../User/About";
 import Search from "./Search";
 import Footer from "./Footer";
 import Don_hang from "../User/Don_hang";
+import Chi_Tiet_Don_Hang from "../User/ChiTietDonHang";
 
 function Content() {
   const match = useRouteMatch();
@@ -24,6 +25,11 @@ function Content() {
         <Route path="/about" component={About} exact />
         <Route path="/search/:keyword" component={Search} exact />
         <Route path="/don_hang" component={Don_hang} exact />
+        <Route
+          path="/don_hang/details/:ma_don_hang"
+          component={Chi_Tiet_Don_Hang}
+          exact
+        />
       </Switch>
       <Footer />
     </div>

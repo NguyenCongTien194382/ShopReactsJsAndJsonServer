@@ -33,7 +33,7 @@ function UserManages() {
         ) : (
           users &&
           users.map((user, index) => (
-            <div className="users-item">
+            <div className="users-item" key={index}>
               <p className="users-id">{index}</p>
               <p className="users-name">{user.username}</p>
               <img

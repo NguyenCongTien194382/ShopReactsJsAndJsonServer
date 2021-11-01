@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 import { ProductContext } from "../../Context/ProductContext";
 import { CLEAN_CART } from "../../const";
 import CartItem from "./CartItem";
-import { Link } from "react-router-dom";
 import { API_URL } from "../../const";
 import { v4 as uuidv4 } from "uuid";
 import swal from "sweetalert";
@@ -16,6 +15,8 @@ function Cart() {
   const payCart = () => {
     setShowModal(true);
   };
+
+  const { loading, setLoading } = useContext(ProductContext);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -52,6 +53,7 @@ function Cart() {
     const data_fecth_api = {
       ma_don_hang: data.ma_don_hang,
       detailsCart: cart,
+      giaTriDonHang: data.price,
     };
 
     const option = {
@@ -68,6 +70,8 @@ function Cart() {
       .then((data) => {
         if (typeof data === "object") {
           dispatch({ type: CLEAN_CART, payload: [] });
+
+          setLoading(false);
 
           swal({
             title: "Cảm ơn quý khách đã mua hàng",
@@ -115,6 +119,11 @@ function Cart() {
 
   return (
     <>
+      {loading ? (
+        <div className="loading">
+          <div className="line-loading"></div>
+        </div>
+      ) : null}
       <div className="cart">
         <h1 className="cart-title">Cart</h1>
         {cart.length > 0 ? (
@@ -191,6 +200,7 @@ function Cart() {
               type="submit"
               onClick={() => {
                 setShowModal(false);
+                setLoading(true);
               }}
             >
               Xác nhận đơn hàng

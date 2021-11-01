@@ -140,7 +140,9 @@ function Admin() {
           </Switch>
         </div>
       ) : (
-        <Redirect to="/" />
+        <div className="not-view">
+          <p>Bạn ko có quyền xem trang này</p>
+        </div>
       )}
     </>
   );
