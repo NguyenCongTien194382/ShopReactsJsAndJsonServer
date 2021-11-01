@@ -59,29 +59,35 @@ function Don_hang() {
             historyBuyProduct.map((item) => (
               <div className="historyBuyItem">
                 <p className="historyBuyItem-name">{item.name}</p>
-                <p className="historyBuyItem-phone">{item.phone}</p>
-                <p className="historyBuyItem-email">{item.email}</p>
-                <p
-                  style={{
-                    backgroundColor: item.status === "0" ? "red" : "blue",
-                  }}
-                  className="historyBuyItem-status"
-                >
-                  {item.status === "0" ? "Chờ xác nhận" : "Đã xác nhận"}
-                </p>
-                <p className="historyBuyItem-price">$ {item.price}</p>
-                <p
-                  className="historyBuyItem-delete"
-                  onClick={() => deleteDonHang(item.id)}
-                >
-                  Hủy đơn hàng
-                </p>
 
-                <p className="historyBuyItem-details">
-                  <Link to={`/don_hang/details/${item.ma_don_hang}`}>
-                    Xem chi tiết
-                  </Link>
-                </p>
+                <p className="historyBuyItem-price"> {item.email}</p>
+
+                <p className="historyBuyItem-price"> {item.phone}</p>
+
+                <p className="historyBuyItem-price">$ {item.price}</p>
+
+                <div className="historyBuyItem-action">
+                  <p
+                    style={{
+                      backgroundColor: item.status === "0" ? "red" : "blue",
+                    }}
+                    className="historyBuyItem-status"
+                  >
+                    {item.status === "0" ? "Chờ xác nhận" : "Đã xác nhận"}
+                  </p>
+                  <p
+                    className="historyBuyItem-delete"
+                    onClick={() => deleteDonHang(item.id)}
+                  >
+                    Hủy đơn hàng
+                  </p>
+
+                  <p className="historyBuyItem-details">
+                    <Link to={`/don_hang/details/${item.ma_don_hang}`}>
+                      Xem chi tiết
+                    </Link>
+                  </p>
+                </div>
               </div>
             ))
           ) : (

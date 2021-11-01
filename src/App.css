@@ -1208,7 +1208,6 @@ p.historyBuyItem-status {
   padding: 10px;
   border-radius: 6px;
   color: #fff;
-  width: 10%;
   margin: 0 20px;
 }
 
@@ -1219,19 +1218,7 @@ p.historyBuyItem-status {
   overflow: hidden;
 }
 
-.historyBuyItem-email {
-  width: 10%;
-  text-align: center;
-  text-overflow: ellipsis;
-}
-
 .historyBuyItem-price {
-  width: 10%;
-  text-align: center;
-}
-
-p.historyBuyItem-phone {
-  width: 10%;
   text-align: center;
 }
 
@@ -1239,7 +1226,6 @@ p.historyBuyItem-phone {
   padding: 10px;
   border-radius: 6px;
   color: #fff;
-  width: 10%;
   background-color: gray;
   cursor: pointer;
 }
@@ -1270,4 +1256,14 @@ p.historyBuyItem-phone {
   right: 10px;
   transform: translate(-50%, -50%);
   font-size: 14px;
+}
+
+.historyBuyItem-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.historyBuyItem-action p {
+  margin: 0 20px;
 }

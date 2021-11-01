@@ -5,17 +5,16 @@ import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
 import { API_URL } from "../../const";
 import { v4 as uuidv4 } from "uuid";
+import swal from "sweetalert";
 
 function Cart() {
   const {
     ProductState: { cart },
-    // dispatch,
+    dispatch,
   } = useContext(ProductContext);
 
   const payCart = () => {
     setShowModal(true);
-    // console.log(JSON.stringify(cart));
-    // dispatch({ type: CLEAN_CART, payload: [] });
   };
 
   const [showModal, setShowModal] = useState(false);
@@ -50,13 +49,9 @@ function Cart() {
   };
 
   const luu_chi_tiet_don_hang = () => {
-    const detailsCart = cart.map((item) => {
-      return item;
-    });
-
     const data_fecth_api = {
       ma_don_hang: data.ma_don_hang,
-      detailsCart: detailsCart,
+      detailsCart: cart,
     };
 
     const option = {
@@ -70,7 +65,18 @@ function Cart() {
 
     fetch(`${API_URL}/detailsCart`, option)
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        if (typeof data === "object") {
+          dispatch({ type: CLEAN_CART, payload: [] });
+
+          swal({
+            title: "Cảm ơn quý khách đã mua hàng",
+            text: "Chúng tui sẽ liên hệ với bạn sớm nhất",
+            icon: "success",
+            buttons: "OK",
+          });
+        }
+      });
   };
 
   const luu_don_hang = () => {

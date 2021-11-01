@@ -128,7 +128,7 @@ function Header() {
                   <li className="nav-mobile-item">
                     <Link
                       onClick={() => setShowMenu(false)}
-                      to="/about"
+                      to="/don_hang"
                       className="nav-mobile-link"
                     >
                       Lịch sử mua hàng
