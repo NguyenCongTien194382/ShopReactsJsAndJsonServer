@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { API_URL } from "../../const";
-import { AuthContext } from "../../Context/Auth";
+
 import { ProductContext } from "../../Context/ProductContext";
 import swal from "sweetalert";
 import Review from "./Review";
@@ -16,10 +16,6 @@ function ProductDetails() {
   const [data, setData] = useState({});
 
   const { addToCart } = useContext(ProductContext);
-
-  const {
-    AuthState: { user },
-  } = useContext(AuthContext);
 
   const [loading, setLoading] = useState(true);
 
@@ -63,33 +59,16 @@ function ProductDetails() {
                 <div
                   className="add-button"
                   onClick={() => {
-                    if (user) {
-                      if (data.status === "1") {
-                        addToCart(data);
-                        history.push("/cart");
-                        // swal({
-                        //   title:
-                        //     "Click vào hình ảnh để xóa sản phẩm khỏi giỏ hàng",
-                        //   text: "Do trên mobile mình đã bỏ nút xóa để trải nghiệm tốt hơn",
-                        //   icon: "warning",
-                        //   buttons: "OK",
-                        // });
-                      } else {
-                        swal({
-                          title: "Sản phẩm này đã hết",
-                          icon: "warning",
-                          buttons: "OK",
-                          dangerMode: true,
-                        });
-                      }
+                    if (data.status === "1") {
+                      addToCart(data);
+                      history.push("/cart");
                     } else {
                       swal({
-                        title: "Đăng nhập !!!!",
-                        text: "Bạn cần đăng nhập để thêm sản phẩm vào giỏ",
+                        title: "Sản phẩm này đã hết",
                         icon: "warning",
+                        buttons: "OK",
                         dangerMode: true,
                       });
-                      history.push("/login");
                     }
                   }}
                 >

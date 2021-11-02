@@ -1,25 +1,59 @@
 import React, { useContext, useEffect, useState } from "react";
 import { API_URL } from "../../const";
 import { ProductContext } from "../../Context/ProductContext";
+import swal from "sweetalert";
 
 function UserManages() {
   const { loading, setLoading } = useContext(ProductContext);
 
-  useEffect(() => {
-    const getAllUsers = () => {
-      fetch(`${API_URL}/users`)
-        .then((res) => res.json())
-        .then((users) => {
-          if (typeof users === "object") {
-            setUsers(users);
-            setLoading(false);
-          }
-        });
-    };
+  const getAllUsers = () => {
+    fetch(`${API_URL}/users?roleId=user`)
+      .then((res) => res.json())
+      .then((users) => {
+        if (typeof users === "object") {
+          setUsers(users);
+          setLoading(false);
+        }
+      });
+  };
 
+  useEffect(() => {
     setLoading(true);
     getAllUsers();
   }, []);
+
+  const deleteUser = (id) => {
+    swal({
+      title: "Bạn có chắc là xóa hok",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        const option = {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        };
+
+        fetch(`${API_URL}/users/${id}`, option)
+          .then((res) => res.json())
+          .then((data) => {
+            if (typeof data === "object") {
+              swal({
+                title: "Xóa thành công",
+                icon: "success",
+                buttons: "OK",
+              });
+              getAllUsers();
+            }
+          })
+          .catch((err) => console.log(err));
+      }
+    });
+  };
 
   const [users, setUsers] = useState([]);
 
@@ -52,7 +86,10 @@ function UserManages() {
                 <div className="review-edit">
                   <i class="fas fa-pen"></i>
                 </div>
-                <div className="review-delete">
+                <div
+                  className="review-delete"
+                  onClick={() => deleteUser(user.id)}
+                >
                   <i class="fas fa-trash"></i>
                 </div>
               </div>

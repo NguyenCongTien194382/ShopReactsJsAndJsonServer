@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import { API_URL } from "../../const";
 import { AuthContext } from "../../Context/Auth";
@@ -32,7 +32,19 @@ function Don_hang() {
     getDonHang();
   }, []);
 
-  const deleteDonHang = (id) => {
+  const deleteChiTietDonHang = (ma_don_hang) => {
+    const option = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    };
+
+    fetch(`${API_URL}/detailsCard?ma_don_hang=${ma_don_hang}`, option);
+  };
+
+  const deleteDonHang = (id, ma_don_hang) => {
     const option = {
       method: "DELETE",
       headers: {
@@ -45,12 +57,14 @@ function Don_hang() {
       .then((res) => res.json())
       .then((data) => {
         if (typeof data === "object") {
+          deleteChiTietDonHang(ma_don_hang);
+
+          getDonHang();
           swal({
             title: "Hủy đơn thành công",
             icon: "success",
             buttons: "OK",
           });
-          getDonHang();
         }
       });
   };
@@ -68,13 +82,13 @@ function Don_hang() {
   } else if (historyBuyProduct.length !== 0) {
     body = historyBuyProduct.map((item) => (
       <div className="historyBuyItem" key={item.id}>
-        <p className="historyBuyItem-name">{item.name}</p>
+        <div className="historyBuyItem-info">
+          <p className="historyBuyItem-name">{item.name}</p>
 
-        <p className="historyBuyItem-price"> {item.email}</p>
+          <p className="historyBuyItem-price"> {item.email}</p>
 
-        <p className="historyBuyItem-price"> {item.phone}</p>
-
-        <p className="historyBuyItem-price">$ {item.price}</p>
+          <p className="historyBuyItem-price"> {item.phone}</p>
+        </div>
 
         <div className="historyBuyItem-action">
           <p
@@ -87,16 +101,14 @@ function Don_hang() {
           </p>
           <p
             className="historyBuyItem-delete"
-            onClick={() => deleteDonHang(item.id)}
+            onClick={() => deleteDonHang(item.id, item.ma_don_hang)}
           >
             Hủy đơn hàng
           </p>
 
-          <p className="historyBuyItem-details">
-            <Link to={`/don_hang/details/${item.ma_don_hang}`}>
-              Xem chi tiết
-            </Link>
-          </p>
+          <Link to={`/don_hang/details/${item.ma_don_hang}`}>
+            <p className="historyBuyItem-details">Xem chi tiết</p>
+          </Link>
         </div>
       </div>
     ));
@@ -104,7 +116,7 @@ function Don_hang() {
     body = (
       <div className="not-view">
         <p>
-          Không có lịch sử mua hàng <Link to="/">mua hàng ngay</Link>{" "}
+          Không có lịch sử <Link to="/">mua hàng ngay</Link>
         </p>
       </div>
     );
@@ -118,7 +130,9 @@ function Don_hang() {
           {body}
         </div>
       ) : (
-        <Redirect to="/" />
+        <div className="not-view">
+          <p>Bạn không có quyền xem trang này</p>
+        </div>
       )}
     </>
   );

@@ -1,11 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  useRouteMatch,
-  Switch,
-  Route,
-  Redirect,
-  NavLink,
-} from "react-router-dom";
+import { useRouteMatch, Switch, Route, NavLink } from "react-router-dom";
 import ProductsManages from "./ProductsManages";
 import FormCreateNewProduct from "./FormCreateNewProduct";
 import FormEditProduct from "./FormEditProduct";

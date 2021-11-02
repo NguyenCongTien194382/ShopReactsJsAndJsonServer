@@ -1,4 +1,3 @@
-export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_USER = "GET_USER";
 export const FIND_PRODUCT = "FIND_PRODUCT";
 export const DELETE_CART = "DELETE_CART";

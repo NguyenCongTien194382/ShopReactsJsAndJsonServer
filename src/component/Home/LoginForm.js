@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { AuthContext } from "../../Context/Auth";
-import { ProductContext } from "../../Context/ProductContext";
 
 function LoginForm() {
   const [data, setData] = useState({
@@ -52,6 +51,7 @@ function LoginForm() {
               placeholder="Enter Email"
               name="email"
               required
+              value={data.email}
               onChange={handleOnChangeInput}
             />
 
@@ -64,6 +64,7 @@ function LoginForm() {
                 placeholder="Enter Password"
                 name="password"
                 required
+                value={data.password}
                 onChange={handleOnChangeInput}
               />
               <i

@@ -50,12 +50,7 @@ function Product() {
           </div>
         </>
       )}
-      <Pagination
-        setLoading={setLoading}
-        totalPage={totalPage}
-        page={page}
-        setPage={setPage}
-      />
+      <Pagination totalPage={totalPage} page={page} setPage={setPage} />
     </>
   );
 }

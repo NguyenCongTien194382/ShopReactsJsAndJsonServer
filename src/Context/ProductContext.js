@@ -1,13 +1,12 @@
 import { createContext, useEffect, useReducer, useState } from "react";
 import { ProductReducer } from "../Reducer/ProductReducer";
-import { API_URL, GET_PRODUCTS, FIND_PRODUCT, DELETE_CART } from "../const";
+import { FIND_PRODUCT, DELETE_CART } from "../const";
 import swal from "sweetalert";
 
 export const ProductContext = createContext();
 
 function ProductContextProvider({ children }) {
   const [ProductState, dispatch] = useReducer(ProductReducer, {
-    products: [],
     cart: JSON.parse(localStorage.getItem("cart")) || [],
     totalPage: null,
   });

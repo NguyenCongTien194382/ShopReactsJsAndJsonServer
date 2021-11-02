@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import { Redirect } from "react-router";
 import { AuthContext } from "../../Context/Auth";
 import { API_URL } from "../../const";
 import swal from "sweetalert";
+import ModalEditUser from "./ModalEditUser";
 
 function About() {
   const {
@@ -11,6 +11,8 @@ function About() {
   } = useContext(AuthContext);
 
   const [loading, setLoading] = useState(false);
+
+  const [showModal, setShowModal] = useState(false);
 
   const handleUploadFile = (e) => {
     const files = e.target.files[0];
@@ -75,46 +77,63 @@ function About() {
   let about;
 
   if (!user) {
-    about = <Redirect to="/" />;
-  } else if (loading) {
     about = (
-      <div className="loading">
-        <div className="line-loading"></div>
+      <div className="not-view">
+        <p>Bạn không có quyền xem trang này</p>
       </div>
     );
   } else {
     about = (
-      <div className="about">
-        <div className="about-wrap">
-          <div className="about-avatar">
-            <img
-              src={
-                user.avatar
-                  ? user.avatar
-                  : "https://pdp.edu.vn/wp-content/uploads/2021/05/hinh-anh-avatar-cho-con-gai-1.jpg"
-              }
-              alt="avatar"
-            />
-            <label className="about-edit-avatar" htmlFor="avatar">
-              Đổi ảnh đại diện
-            </label>
-            <input
-              type="file"
-              id="avatar"
-              placeholder="Thay đổi ảnh đại diện"
-              onChange={handleUploadFile}
-            />
+      <>
+        {loading ? (
+          <div className="loading">
+            <div className="line-loading"></div>
           </div>
-          <div className="about-info">
-            <h1>{user.username}</h1>
-            <p>{user.email}</p>
+        ) : null}
+        <div className="about">
+          <div className="about-wrap">
+            <div className="about-avatar">
+              <img
+                src={
+                  user.avatar
+                    ? user.avatar
+                    : "https://pdp.edu.vn/wp-content/uploads/2021/05/hinh-anh-avatar-cho-con-gai-1.jpg"
+                }
+                alt="avatar"
+              />
+              <label className="about-edit-avatar" htmlFor="avatar">
+                Đổi ảnh đại diện
+              </label>
+              <input
+                type="file"
+                id="avatar"
+                placeholder="Thay đổi ảnh đại diện"
+                onChange={handleUploadFile}
+              />
+            </div>
+            <div className="about-info">
+              <h1>{user.username}</h1>
+              <p>{user.email}</p>
+            </div>
+            <div className="about-action">
+              <button onClick={() => setShowModal(true)} className="about-edit">
+                Chỉnh sữa thông tin
+              </button>
+              <button className="about-edit-password">
+                Chỉnh sữa mật khẩu
+              </button>
+            </div>
           </div>
-          <div className="about-action">
-            <button className="about-edit">Chỉnh sữa thông tin</button>
-            <button className="about-edit-password">Chỉnh sữa mật khẩu</button>
-          </div>
+
+          <ModalEditUser
+            data={user}
+            setShowModal={setShowModal}
+            showModal={showModal}
+            loadUser={loadUser}
+            setLoading={setLoading}
+          />
         </div>
-      </div>
+      </>
     );
   }
 

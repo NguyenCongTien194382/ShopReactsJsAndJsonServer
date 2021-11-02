@@ -1,6 +1,6 @@
 import React from "react";
 
-function Pagination({ page, totalPage, setPage, setLoading }) {
+function Pagination({ page, totalPage, setPage }) {
   const loopPage = (totalPage) => {
     let divElement = [];
     for (let i = 1; i <= totalPage; i++) {

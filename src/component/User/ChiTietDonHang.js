@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams, Redirect } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { API_URL } from "../../const";
 import { AuthContext } from "../../Context/Auth";
 import { ProductContext } from "../../Context/ProductContext";
@@ -53,6 +53,9 @@ function ChiTietDonHang() {
                   <p className="chi-tiet-don-hang-maDonHang">
                     Mã đơn hàng: {data && data.ma_don_hang}
                   </p>
+                  <p className="chi-tiet-don-hang-maDonHang">
+                    Địa chỉ: {data && data.address}
+                  </p>
                   <p>Sản phẩm</p>
                   {detailsCart &&
                     detailsCart.map((item, index) => (
@@ -78,7 +81,11 @@ function ChiTietDonHang() {
       </div>
     );
   } else {
-    body = <Redirect to="/" />;
+    body = (
+      <div className="not-view">
+        <p>Bạn không có quyền xem trang này</p>
+      </div>
+    );
   }
 
   return <>{body}</>;

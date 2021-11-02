@@ -49,6 +49,7 @@ function RegisterForm() {
               placeholder="Enter Username"
               name="username"
               required
+              value={data.username}
               onChange={handleOnChangeInput}
             />
 
@@ -60,6 +61,7 @@ function RegisterForm() {
               placeholder="Enter Email"
               name="email"
               required
+              value={data.email}
               onChange={handleOnChangeInput}
             />
 
@@ -71,6 +73,7 @@ function RegisterForm() {
               placeholder="Enter Password"
               name="password"
               required
+              value={data.password}
               onChange={handleOnChangeInput}
             />
 
@@ -82,6 +85,7 @@ function RegisterForm() {
               placeholder="Enter Comfirm Password"
               name="comfirmPassword"
               required
+              value={data.comfirmPassword}
               onChange={handleOnChangeInput}
             />
 

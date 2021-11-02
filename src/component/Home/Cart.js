@@ -5,6 +5,8 @@ import CartItem from "./CartItem";
 import { API_URL } from "../../const";
 import { v4 as uuidv4 } from "uuid";
 import swal from "sweetalert";
+import { AuthContext } from "../../Context/Auth";
+import { useHistory } from "react-router-dom";
 
 function Cart() {
   const {
@@ -12,8 +14,22 @@ function Cart() {
     dispatch,
   } = useContext(ProductContext);
 
+  const {
+    AuthState: { user },
+  } = useContext(AuthContext);
+
+  const history = useHistory();
+
   const payCart = () => {
-    setShowModal(true);
+    if (user) return setShowModal(true);
+
+    swal({
+      title: "Bạn cần đăng nhập để mua hàng",
+      icon: "warning",
+      buttons: "OK",
+    });
+
+    history.push("/login");
   };
 
   const { loading, setLoading } = useContext(ProductContext);
@@ -33,6 +49,10 @@ function Cart() {
 
     setTong_don_hang(totalPrice(cart));
   }, [cart]);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
 
   const [data, setData] = useState({
     userId: localStorage.getItem("idUser"),
@@ -54,6 +74,7 @@ function Cart() {
       ma_don_hang: data.ma_don_hang,
       detailsCart: cart,
       giaTriDonHang: data.price,
+      address: data.address,
     };
 
     const option = {
