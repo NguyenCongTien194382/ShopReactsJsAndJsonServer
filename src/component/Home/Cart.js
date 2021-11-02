@@ -62,7 +62,7 @@ function Cart() {
     phone: "",
     ma_don_hang: random,
     price: "",
-    status: "0",
+    status: "Chờ xác nhận",
   });
 
   const handleOnChangeModal = (e) => {

@@ -54,7 +54,7 @@ function Search() {
     renderViewSearch = (
       <>
         <div className="loading-products">
-          <div class="loader"></div>
+          <div className="loader"></div>
         </div>
       </>
     );
@@ -87,7 +87,7 @@ function Search() {
         <h1 className="search-title-1">Kết quả tìm kiếm</h1>
         <div class="wraper">
           <div className="filter" onClick={() => setShowFilter(!showFilter)}>
-            Sắp xếp <i class="fas fa-chevron-left"></i>
+            Sắp xếp <i className="fas fa-chevron-left"></i>
           </div>
           <div className="filter-list">
             <ul

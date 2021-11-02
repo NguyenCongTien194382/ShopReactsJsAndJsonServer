@@ -85,7 +85,7 @@ function Don_hang() {
         <div className="historyBuyItem-info">
           <p className="historyBuyItem-name">{item.name}</p>
 
-          <p className="historyBuyItem-price"> {item.email}</p>
+          <p className="historyBuyItem-price none"> {item.email}</p>
 
           <p className="historyBuyItem-price"> {item.phone}</p>
         </div>
@@ -93,11 +93,18 @@ function Don_hang() {
         <div className="historyBuyItem-action">
           <p
             style={{
-              backgroundColor: item.status === "0" ? "red" : "blue",
+              backgroundColor:
+                item.status === "Chờ xác nhận"
+                  ? "red"
+                  : item.status === "Đã xác nhận"
+                  ? "blue"
+                  : item.status === "Đang giao"
+                  ? "#f39c12"
+                  : "green",
             }}
             className="historyBuyItem-status"
           >
-            {item.status === "0" ? "Chờ xác nhận" : "Đã xác nhận"}
+            {item.status}
           </p>
           <p
             className="historyBuyItem-delete"

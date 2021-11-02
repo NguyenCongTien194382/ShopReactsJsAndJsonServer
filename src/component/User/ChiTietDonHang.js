@@ -72,7 +72,7 @@ function ChiTietDonHang() {
                       </div>
                     ))}
 
-                  <p className="total">Tổng ${data.giaTriDonHang}</p>
+                  <p className="total">Tổng cộng ${data.giaTriDonHang}</p>
                 </>
               ) : null}
             </>

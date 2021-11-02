@@ -40,7 +40,7 @@ function Admin() {
     };
 
     loadUser();
-  });
+  }, []);
 
   const [showCategory, setShowCategory] = useState(false);
 
@@ -90,16 +90,7 @@ function Admin() {
                   Quản lí người dùng
                 </NavLink>
               </li>
-              <li className="category-item">
-                <NavLink
-                  exact
-                  activeClassName="active"
-                  className="category-link"
-                  to={`${match.path}/reviews`}
-                >
-                  Đánh giá từ khách hàng
-                </NavLink>
-              </li>
+
               <li className="category-item">
                 <NavLink
                   exact

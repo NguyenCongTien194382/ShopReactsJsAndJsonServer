@@ -193,6 +193,14 @@
   .historyBuyItem-action p {
     margin: 0;
   }
+  .pay-product {
+    width: 100%;
+    max-width: 800px;
+    overflow-x: auto;
+  }
+  .none {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -374,5 +382,18 @@
   }
   .historyBuyItem-action p {
     margin: 0;
+  }
+  .none {
+    display: none;
+  }
+  .historyBuyItem-action p {
+    font-size: 14px;
+    width: 80px;
+  }
+  .historyBuyItem-info {
+    padding: 0;
+  }
+  .pay-product {
+    width: 100%;
   }
 }
